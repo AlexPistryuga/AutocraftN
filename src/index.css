@@ -632,8 +632,8 @@ header.shadow #search-icon{
   background-color: white;
   border: 1px solid #ccc;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 300px;
-  max-height: 400px;
+  width: 400px; /* Увеличиваем ширину */
+  max-height: 600px; /* Увеличиваем высоту */
   overflow-y: auto;
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: 0;
@@ -661,8 +661,8 @@ header.shadow #search-icon{
 }
 
 .cart-content img {
-  width: 50px;
-  height: 50px;
+  width: 60px; /* Увеличиваем размер изображений */
+  height: 60px;
   object-fit: cover;
   margin-right: 10px;
 }
@@ -680,11 +680,68 @@ header.shadow #search-icon{
   cursor: pointer;
 }
 
+/* Services.css */
+.services {
+  padding: 30px 0;
+  justify-content: center;
 
-/* Показ корзины при ее активности */
-.cart-container .cart-content.show {
-  display: block;
 }
+
+.services-heading {
+  text-align: center;
+  margin-bottom: 10px;
+  justify-content: center;
+
+}
+
+.services-heading h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--main-color);
+  justify-content: center;
+
+}
+
+.services-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px; /* Расстояние между элементами */
+}
+
+.services-item {
+  flex: 1 1 150px; /* Устанавливаем ширину элемента */
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, transform 0.3s;
+
+}
+
+.services-item:hover {
+  background-color: var(--btn-hover);
+  color: var(--bg-color);
+  transform: translateY(-15px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

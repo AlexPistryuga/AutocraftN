@@ -1,4 +1,3 @@
-// src/components/Cart.tsx
 import React from 'react';
 import '../index.css'; // Импортируем CSS файл
 
@@ -14,13 +13,15 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ items, onRemove }) => {
-    const cartItems = items || [];
+    console.log("Cart items:", items); // Логирование для проверки
 
     return (
         <div className="cart-content">
-            {cartItems.length === 0 ? null : (
+            {items.length === 0 ? (
+                <p>Your cart is empty</p>
+            ) : (
                 <ul>
-                    {cartItems.map((item, index) => (
+                    {items.map((item, index) => (
                         <li key={index}>
                             <img src={item.imgSrc} alt={item.title} />
                             <div>

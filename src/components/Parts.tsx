@@ -1,28 +1,34 @@
-// src/components/Parts.tsx
 import React, { useState } from 'react';
 import '../index.css'; // Путь к вашему CSS файлу
 import Cart from './Cart'; // Импортируем компонент корзины
 
 interface Part {
+    id: number;
     imgSrc: string;
     title: string;
     price: string;
     reviews: number;
 }
 
+interface CartItem {
+    imgSrc: string;
+    title: string;
+    price: string;
+}
+
 const parts: Part[] = [
-    { imgSrc: "/img/parts/part1.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
-    { imgSrc: "/img/parts/part2.jpeg", title: "Auto Parts", price: "$26.99", reviews: 6 },
-    { imgSrc: "/img/parts/part3.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
-    { imgSrc: "/img/parts/part4.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
-    { imgSrc: "/img/parts/part5.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
-    { imgSrc: "/img/parts/part6.png", title: "Auto Parts", price: "$26.99", reviews: 6 },
-    { imgSrc: "/img/parts/part7.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
-    { imgSrc: "/img/parts/part8.png", title: "Auto Parts", price: "$26.99", reviews: 6 }
+    { id: 1, imgSrc: "/img/parts/part1.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
+    { id: 2, imgSrc: "/img/parts/part2.jpeg", title: "Auto Parts", price: "$26.99", reviews: 6 },
+    { id: 3, imgSrc: "/img/parts/part3.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
+    { id: 4, imgSrc: "/img/parts/part4.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
+    { id: 5, imgSrc: "/img/parts/part5.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
+    { id: 6, imgSrc: "/img/parts/part6.png", title: "Auto Parts", price: "$26.99", reviews: 6 },
+    { id: 7, imgSrc: "/img/parts/part7.jpg", title: "Auto Parts", price: "$26.99", reviews: 6 },
+    { id: 8, imgSrc: "/img/parts/part8.png", title: "Auto Parts", price: "$26.99", reviews: 6 }
 ];
 
 const Parts: React.FC = () => {
-    const [cartItems, setCartItems] = useState<Part[]>([]);
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [cartVisible, setCartVisible] = useState<boolean>(false);
 
     const handleBuyNow = (part: Part) => {
@@ -33,7 +39,6 @@ const Parts: React.FC = () => {
         };
         setCartItems(prevItems => [...prevItems, cartItem]);
     };
-
 
     const handleRemoveItem = (index: number) => {
         setCartItems(prevItems => prevItems.filter((_, i) => i !== index));
@@ -53,8 +58,8 @@ const Parts: React.FC = () => {
                 </div>
                 <div className="parts-container container">
                     {parts.map(part => (
-                        <div className="box" key={part.title}>
-                            <img src={part.imgSrc} alt={part.title} />
+                        <div className="box" key={part.id}>
+                            <img src={part.imgSrc} alt={part.title}/>
                             <h2>{part.title}</h2>
                             <span>{part.price}</span>
                             <i className='bx bx-star'>({part.reviews} Reviews)</i>

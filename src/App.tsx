@@ -1,5 +1,6 @@
+// src/App.tsx
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import HomeSection from './components/HomeSection';
 import AboutSection from './components/AboutSection';
@@ -10,25 +11,26 @@ import Parts from './components/Parts';
 import Companies from './components/Companies';
 import Blog from './components/Blog';
 import Cars from './components/Cars';
-import Cart from './components/Cart';
 import './index.css';
 import '/src/assets/responsitive.css';
+import Services from "./components/Services.tsx";
 
 const App: React.FC = () => (
-    <div>
-        <Header />
-        <HomeSection />
-        <Cars />
-        <AboutSection />
-        <Parts />
+    <Router>
+        <div>
+            <Header />
+            <HomeSection />
+            <Cars />
+            <AboutSection />
+            <Services/>
+                        <Parts />
             <SearchMenu />
             <Companies />
             <Blog />
-        <Footer />
-        <Copyright />
-        <Cart />
-    </div>
+            <Footer />
+            <Copyright />
+        </div>
+    </Router>
 );
 
 export default App;
-
