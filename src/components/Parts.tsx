@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import '../index.css'; // Путь к вашему CSS файлу
-import Cart from './Cart'; // Импортируем компонент корзины
+import React from 'react';
+import '../index.css';
 
 interface Part {
     id: number;
@@ -8,12 +7,6 @@ interface Part {
     title: string;
     price: string;
     reviews: number;
-}
-
-interface CartItem {
-    imgSrc: string;
-    title: string;
-    price: string;
 }
 
 const parts: Part[] = [
@@ -27,58 +20,42 @@ const parts: Part[] = [
     { id: 8, imgSrc: "/img/parts/part8.png", title: "Auto Parts", price: "$26.99", reviews: 6 }
 ];
 
-const Parts: React.FC = () => {
-    const [cartItems, setCartItems] = useState<CartItem[]>([]);
-    const [cartVisible, setCartVisible] = useState<boolean>(false);
+interface PartsProps {
+    addToCart: (item: any) => void; // Функция добавления в корзину
+}
 
+const Parts: React.FC<PartsProps> = ({ addToCart }) => {
     const handleBuyNow = (part: Part) => {
-        const cartItem: CartItem = {
+        const cartItem = {
+            id: part.id,
             imgSrc: part.imgSrc,
             title: part.title,
             price: part.price
         };
-        setCartItems(prevItems => [...prevItems, cartItem]);
-    };
-
-    const handleRemoveItem = (index: number) => {
-        setCartItems(prevItems => prevItems.filter((_, i) => i !== index));
-    };
-
-    const toggleCartVisibility = () => {
-        setCartVisible(prevVisible => !prevVisible);
+        addToCart(cartItem);
+        console.log("Item added to cart:", cartItem); // Для отладки
     };
 
     return (
-        <div>
-            <section className="parts" id="parts">
-                <div className="heading">
-                    <span>What we offer?</span>
-                    <h2>Our cars are always on the road</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusantium eius ex ipsam ipsum iusto, maiores modi molestiae</p>
-                </div>
-                <div className="parts-container container">
-                    {parts.map(part => (
-                        <div className="box" key={part.id}>
-                            <img src={part.imgSrc} alt={part.title}/>
-                            <h2>{part.title}</h2>
-                            <span>{part.price}</span>
-                            <i className='bx bx-star'>({part.reviews} Reviews)</i>
-                            <button className="btn" onClick={() => handleBuyNow(part)}>Buy Now</button>
-                            <a href="#" className="details">View details</a>
-                        </div>
-                    ))}
-                </div>
-            </section>
-            <div className="cart-container">
-                <i className='bx bx-cart' onClick={toggleCartVisibility}></i>
-                {cartItems.length > 0 && (
-                    <span className="cart-count">{cartItems.length}</span>
-                )}
-                <div className={`cart-content ${cartVisible ? 'show' : ''}`}>
-                    <Cart items={cartItems} onRemove={handleRemoveItem} />
-                </div>
+        <section className="parts" id="parts">
+            <div className="heading">
+                <span>What we offer?</span>
+                <h2>Our cars are always on the road</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, accusantium eius ex ipsam ipsum iusto, maiores modi molestiae</p>
             </div>
-        </div>
+            <div className="parts-container container">
+                {parts.map(part => (
+                    <div className="box" key={part.id}>
+                        <img src={part.imgSrc} alt={part.title} />
+                        <h2>{part.title}</h2>
+                        <span>{part.price}</span>
+                        <i className='bx bx-star'>({part.reviews} Reviews)</i>
+                        <button className="btn" onClick={() => handleBuyNow(part)}>Buy Now</button>
+                        <a href="#" className="details">View details</a>
+                    </div>
+                ))}
+            </div>
+        </section>
     );
 };
 
