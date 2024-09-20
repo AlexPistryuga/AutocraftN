@@ -10,7 +10,7 @@ const AboutSection: React.FC = () => (
             <span>About Us</span>
             <h2>Cheap Prices With <br /> Quality Cars</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab aut, blanditiis delectus dolor Lorem ipsum dolor sit amet, consectetur adipisicing </p>
-            <a href="#" className="btn">Learn More</a>
+            <a href="#" className="btn2">Learn More</a>
         </div>
     </section>
 );
